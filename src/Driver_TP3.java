@@ -6,6 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Driver_TP3 {
+	static{
+		StdOut.println("-----------------Information about the App--------------------------------");
+		StdOut.println("-----------------Rules--------------------------------");
+		StdOut.println("Wherever you asked to enter the date. Please enter in the following format like dd-MM-yyyy.");
+		StdOut.println("Fine in the app is computed as: Fine = Number of days * 1");
+		StdOut.println("John name is used for all Patron. Patron can have any Id like 1,2");
+		StdOut.println("Always try to run the application using existing patron id");
+		StdOut.println("----------------------------------------------------------");
+		StdOut.println("========================================================================");
+		
+		StdOut.println();
+	}
 
 	public static int NO_OF_COPIES_CAN_HAVE = 5;
 
