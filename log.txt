@@ -1,0 +1,4 @@
+[2017/04/09_04:52:58]: Logged:Clerk w/ name: Micheal, id: 1234
+[2017/04/09_04:52:58]: A new transaction started by Clerk w/ name: Micheal, id: 1234
+[2017/04/09_04:52:58]: A new transaction started by Clerk w/ name: Micheal, id: 1234
+[2017/04/09_04:54:30]: Logged:Clerk w/ name: Micheal, id: 45
