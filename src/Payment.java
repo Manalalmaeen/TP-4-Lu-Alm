@@ -1,5 +1,8 @@
 
 
+
+
+
 public class Payment {
 	
 	double price;

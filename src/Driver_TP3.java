@@ -31,7 +31,8 @@ public class Driver_TP3 {
 		StdOut.println("2.Check in ...");
 		StdOut.println("3.Sell a copy to Patron ...");
 		StdOut.println("4.Back to Main Menu");
-		StdOut.println("5.Exit");
+		StdOut.println("5.Determine the Patron having holds....");
+		StdOut.println("6.Exit");
 	}
 
 	public static void paymentMenu() {

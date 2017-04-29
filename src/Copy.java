@@ -1,10 +1,25 @@
+import java.util.Date;
+
+
 public class Copy
 {
 	private String copyID;
 	private double price;
 	private Patron outTo;
+	private Date dueDate;
+
 
 	// following generated in Eclipse Source menu
+	
+	public Date getDueDate() 
+	{
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) 
+	{
+		this.dueDate = dueDate;
+	}
 
 	public Patron getOutTo()
 	{
@@ -28,7 +43,7 @@ public class Copy
 
 	public String toString()
 	{
-		return "Copy w/id= " + this.copyID;
+		return "Copy w/id= " + this.copyID+ this.copyID+"\t\tDue Date: "+dueDate;
 	}
 
 	public double getPrice()

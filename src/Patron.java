@@ -1,10 +1,25 @@
-
 import java.util.ArrayList;
 
 public class Patron
 {
 	private String name;
 	private String patronID;
+	public String getPatronID() {
+		return patronID;
+	}
+
+	public void setPatronID(String patronID) {
+		this.patronID = patronID;
+	}
+
+	public ArrayList<Copy> getCopiesOut() {
+		return copiesOut;
+	}
+
+	public void setCopiesOut(ArrayList<Copy> copiesOut) {
+		this.copiesOut = copiesOut;
+	}
+
 	private ArrayList<Copy> copiesOut;
 	private boolean holdStatus;
 
@@ -61,6 +76,10 @@ public class Patron
     
     public boolean  getHoldStatus(){
     	return holdStatus;
+    }
+    
+    public void  setHoldStatus(boolean holdStatus){
+    	this.holdStatus  = holdStatus;
     }
     
 	public static void main(String[] args)

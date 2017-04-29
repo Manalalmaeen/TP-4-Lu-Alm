@@ -4,3 +4,6 @@
 [2017/04/09_04:54:30]: Logged:Clerk w/ name: Micheal, id: 45
 [2017/04/28_18:12:17]: Logged:Clerk w/ name: Micheal, id: 2
 [2017/04/28_18:12:17]: A new transaction started by Clerk w/ name: Micheal, id: 2
+[2017/04/28_18:25:51]: Logged:Clerk w/ name: Micheal, id: 2
+[2017/04/28_18:31:30]: Logged:Clerk w/ name: Micheal, id: 2
+[2017/04/28_18:31:30]: A new transaction started by Clerk w/ name: Micheal, id: 2
