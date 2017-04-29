@@ -58,8 +58,8 @@ public class TestAll {
 	@Test
 	public void  testGetClerkName(){
 		
-		Clerk clerk = new Clerk ("Manal", "22");
-		assertEquals("Manal", clerk.getName());
+		Clerk clerk = new Clerk ("WenjingAndManal", "22");
+		assertEquals("WenjingAndManal", clerk.getName());
 
 	 }
 
