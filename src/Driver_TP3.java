@@ -1,11 +1,15 @@
 
 
-
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+
 
 public class Driver_TP3 {
+
 	static{
 		StdOut.println("-----------------Information about the App--------------------------------");
 		StdOut.println("-----------------Rules--------------------------------");
@@ -18,9 +22,9 @@ public class Driver_TP3 {
 		
 		StdOut.println();
 	}
-
 	public static int NO_OF_COPIES_CAN_HAVE = 5;
-
+	public static SimpleDateFormat sdf= new SimpleDateFormat("dd-MM-yyyy");
+	
 	public static void mainMenu() {
 		StdOut.println("1.Start a new transaction ...");
 		StdOut.println("2.Exit");
@@ -62,7 +66,18 @@ public class Driver_TP3 {
 						copyID = StdIn.readString();
 						Copy copy = TRLController.CopyValidate(copyID);
 						if (copy != null) {
-							patron.checkCopyOut(new Copy(copyID));
+							do{
+							StdOut.print("Please enter the due date of Copy(dd-mm-yyyy) : ");
+							String date = StdIn.readString();
+							try {
+								copy.setDueDate(sdf.parse(date));
+								break;
+							} catch (ParseException e) {
+								StdOut.print("Incorrect format of date. Please try agaon!!!!");
+								continue;
+							}
+							}while(true);
+							patron.checkCopyOut(copy);
 							StdOut.println("Copy check out to Patron with "
 									+ patronID);
 						} else {
@@ -85,13 +100,15 @@ public class Driver_TP3 {
 		}
 
 	}
+	
 
 	public static void checkIn() {
 		char ch = 'Y';
 		String patronID;
 		StdOut.print("Please enter the Patron ID : ");
 		patronID = StdIn.readString();
-		Patron patron = TRLController.patronValidate(patronID);
+		Patron patron = TRLController.getPatron(patronID);
+		Date curDate = null;
 		if (patron != null) {
 
 			// ------------------------------
@@ -102,8 +119,27 @@ public class Driver_TP3 {
 			while (ch == 'Y' || ch == 'y') {
 				StdOut.print("Please enter the Copy ID : ");
 				copyID = StdIn.readString();
-				Copy copy = TRLController.CopyValidate(copyID);
+				Copy copy = TRLController.getCopy(patron,copyID);
 				if (copy != null) {
+					
+					do{
+						StdOut.print("Please enter the current date(dd-mm-yyyy) : ");
+						String date = StdIn.readString();
+						try {
+							curDate =	sdf.parse(date);
+						//TRLController.findPatronHavingHolds(curDate);
+							break;
+						} catch (ParseException e) {
+							StdOut.print("Incorrect format of date. Please try agaon!!!!");
+							continue;
+						}
+						}while(true);
+					
+					if(copy.getDueDate().compareTo(curDate)<0){
+						long diff = curDate.getTime() - copy.getDueDate().getTime();
+						System.out.println("This copy has a fine of :$"+ TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)*1);
+						System.out.println("Please pay");
+					}
 					patron.checkCopyIn(new Copy(copyID));
 					StdOut.println("Copy check in by Patron with ID "
 							+ patronID);
@@ -115,6 +151,21 @@ public class Driver_TP3 {
 				ch = (StdIn.readString()).charAt(0);
 			}
 			StdOut.println(patron); // delete
+			boolean hold  = false;
+			for(Copy c :patron.getCopiesOut()){
+				if(c.getDueDate().compareTo(curDate)<0){
+					hold =true;
+					break;
+				}
+			}
+			if(hold){
+				StdOut.println(patron.getName() + " still you have some due copies.");
+				
+			}
+			else{
+				StdOut.println(patron.getName() + " ,you now have no due copies.");
+			}
+			patron.setHoldStatus(hold);
 			// -----------------------------
 
 		} else {
@@ -217,7 +268,10 @@ public class Driver_TP3 {
 							contOption=0;
 							break;
 						}
-						case 5: {
+						case 5:
+							determinePatronHold();
+							break;
+						case 6: {
 							StdOut.print("System terminated...");
 							System.exit(1);
 							break;
@@ -237,5 +291,21 @@ public class Driver_TP3 {
 			StdOut.println("Error: Clerk ID doesn't exit");
 		}
 
+	}
+
+	private static void determinePatronHold() {
+		do{
+			StdOut.print("Please enter the current date(dd-mm-yyyy) : ");
+			String date = StdIn.readString();
+			try {
+			Date curDate =	sdf.parse(date);
+			TRLController.findPatronHavingHolds(curDate);
+				break;
+			} catch (ParseException e) {
+				StdOut.println("Incorrect format of date. Please try agaon!!!!");
+				continue;
+			}
+			}while(true);
+		
 	}
 }

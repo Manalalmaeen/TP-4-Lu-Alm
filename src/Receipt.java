@@ -3,7 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-
 public class Receipt {
 	
 	public static void getReceipt(Patron patron, double price, Copy c , Clerk clerk){

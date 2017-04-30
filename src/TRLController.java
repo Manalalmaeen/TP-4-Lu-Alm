@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.Date;
+
+
 public class TRLController {
 	
+	public static ArrayList<Patron> patronList = new ArrayList<Patron>();
+
 	public static Clerk clerkValidate(String clerkId){
 		String clerkName = getClerkName(clerkId);
 		if (clerkName != null){
@@ -29,12 +35,17 @@ public class TRLController {
 		// return copy
 		return new Copy(copyId);
 		
-	}
-	
-	public static Patron patronValidate(String patronId){
+	}public static Patron patronValidate(String patronId){
+		for(Patron p : patronList){
+			if(p.getPatronID().equalsIgnoreCase(patronId)){
+				return p;
+			}
+		}
 		String patronName = getPatronName(patronId);
 		if (patronName != null){
-			return new Patron(patronName,patronId);
+			Patron p =new Patron(patronName,patronId);
+			patronList.add(p);
+			return p;
 		}
 		return null;
 	}
@@ -45,6 +56,47 @@ public class TRLController {
 		// return patronName
 		return "John";
 		
+	}
+
+	public static void findPatronHavingHolds(Date curDate) {
+		for(Patron p : patronList){
+			String copy="";
+			for(Copy c :p.getCopiesOut()){
+				if(c.getDueDate().compareTo(curDate)<0){
+					copy +="\t\tCopy Id: "+ c.getCopyID()+"\n";
+				}
+			}
+			if(!"".equals(copy)){
+				System.out.println(p.getName() + " has the following due copies: ");
+				System.out.println(copy);
+				p.setHoldStatus(true);
+				
+			}
+			else{
+				System.out.println(p.getName() + " has no due copies");
+			}
+			System.out.println();
+		}
+		
+	}
+
+	public static Patron getPatron(String patronID) {
+		for(Patron p : patronList){
+			if(p.getPatronID().equalsIgnoreCase(patronID)){
+				return p;
+			}
+		}
+		return null;
+	}
+
+	public static Copy getCopy(Patron patron, String copyID) {
+		for(Copy c :patron.getCopiesOut()){
+			if(c.getCopyID().equalsIgnoreCase(copyID)){
+				return c;
+			}
+			
+		}
+		return null;
 	}
 
 
