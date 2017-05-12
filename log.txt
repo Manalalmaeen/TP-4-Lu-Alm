@@ -19,3 +19,5 @@
 [2017/04/29_21:09:21]: A new transaction started by Clerk w/ name: Micheal, id: 2
 [2017/04/29_21:09:21]: A new transaction started by Clerk w/ name: Micheal, id: 2
 [2017/04/29_21:09:21]: A new transaction started by Clerk w/ name: Micheal, id: 2
+[2017/05/11_23:29:16]: Logged:Clerk w/ name: Micheal, id: 1
+[2017/05/11_23:29:16]: A new transaction started by Clerk w/ name: Micheal, id: 1
