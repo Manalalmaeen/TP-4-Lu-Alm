@@ -1,12 +1,24 @@
-
+/**
+ * File    : Receipt.java
+ * Purpose : This class generates the receipt
+ *
+ */
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
 public class Receipt {
+	/**
+	 * 
+	 * @param patron : Patron object
+	 * @param price  : price of the copy
+	 * @param c      : Copy object
+	 * @param clerk  : clerk object
+	 */
 	
 	public static void getReceipt(Patron patron, double price, Copy c , Clerk clerk){
 		
+		// format the timestamp
 		String timeStamp = new SimpleDateFormat("yyyy/MM/dd_HH:mm:ss").format(Calendar.getInstance().getTime());
 		
 		StdOut.println("====================================================");
@@ -27,3 +39,4 @@ public class Receipt {
 	}
 
 }
+
