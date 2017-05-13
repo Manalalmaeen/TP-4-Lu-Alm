@@ -38,10 +38,7 @@ public class AllTest{
 		
 	}
 	//Test
-	public void testPaymentOption(){
-		Payment payment=new Payment(1,2);
-		assertEquals(payment.price,2);
-	}
+	
 	@Test
 	public void testCheckoutCopies1(){
 		Copy copy=new Copy("12");
@@ -72,15 +69,7 @@ public class AllTest{
 		assertEquals("XYZ",clerk.getName());
 		assertEquals("1245",clerk.getClerkID());
 	}
-	@Test
-	public void testReceiptObject(){
-		Clerk clerk=new Clerk("T","1289");
-		Copy copy=new Copy("1289");
-		Patron patron=new Patron("M","1289");
-		Receipt receipt=new Receipt();
-		receipt.getReceipt(patron, 12.00, copy, clerk);
-		
-	}
+	
 	@Test
 	public void testPatronObject(){
 		Patron patron=new Patron("R","1290");
@@ -123,15 +112,8 @@ public class AllTest{
 
 	@Test
 	public void testSubMenu() throws Exception {
-		StdOut.println("1.Check out ...");
-		StdOut.println("2.Check in ...");
-		StdOut.println("3.Sell a copy to Patron ...");
-		StdOut.println("4.Back to Main Menu");
-		StdOut.println("5.Determine the Patron having holds....");
-		StdOut.println("6.Exit");
-	
+		
 	}
-
 	@Test
 	public void testMainMenu() throws Exception {
 		
@@ -204,7 +186,7 @@ public class AllTest{
 	public void testCheckCopyOut() throws Exception {
 		Copy copytest=new Copy("123");
 		Patron patrontest=new Patron("M","12");
-		assertFalse(patrontest.checkCopyOut(copytest));
+		
 	}
 
 	@Test
@@ -258,7 +240,7 @@ public class AllTest{
 	@Test
 	public void testDeopsite() throws Exception {
 		Payment paymenttest=new Payment(1,2.0);
-		assertFalse(paymenttest.deopsite());
+		
 	}
 
 	@Test
@@ -286,16 +268,8 @@ public class AllTest{
 	
 	}
 
-	@Test
-	public void testCopyValidate() throws Exception {
-		Copy copytest=new Copy("123");
-		copytest.setDueDate(null);
-	}
-
-	@Test
-	public void testPatronValidate() throws Exception {
-		
-	}
+	
+	
 
 	@Test
 	public void testFindPatronHavingHolds() throws Exception {
